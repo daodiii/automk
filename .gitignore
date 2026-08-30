@@ -2,3 +2,14 @@
 *.log
 .firecrawl/serve.log
 .claude/worktrees/
+
+# Cloud-sync duplicates (this folder lives in iCloud/Dropbox).
+# After a sync run, the cloud client copies every new file as
+# "bil-474617364 2.html", "images/470180828/1 2.jpg", etc. sync.py --publish
+# runs `git add -A`, so without this they get committed and go live as
+# orphan car pages. No real file in this repo has a space in its name.
+* [0-9].*
+* [0-9][0-9].*
+* [0-9]
+*conflicted copy*
+* ([0-9]).*
